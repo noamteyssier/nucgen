@@ -4,3 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+anyhow = "1.0.95"
+clap = { version = "4.5.23", features = ["derive"] }
+gzp = "0.11.3"
+num_cpus = "1.16.0"
+rand = "0.8.5"
+rand_chacha = "0.3.1"
