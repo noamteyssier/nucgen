@@ -1,16 +1,29 @@
-use std::io::Write;
-
 use anyhow::{bail, Result};
-use clap::Parser;
+use clap::{
+    builder::{
+        styling::{AnsiColor, Effects},
+        Styles,
+    },
+    Parser,
+};
 use rand::prelude::*;
 use rand_chacha::ChaCha8Rng;
+use std::io::Write;
 
 use crate::{
     format::Format,
     write::{gzip_passthrough, match_output},
 };
 
+// Configures Clap v3-style help menu colors
+const STYLES: Styles = Styles::styled()
+    .header(AnsiColor::Green.on_default().effects(Effects::BOLD))
+    .usage(AnsiColor::Green.on_default().effects(Effects::BOLD))
+    .literal(AnsiColor::Cyan.on_default().effects(Effects::BOLD))
+    .placeholder(AnsiColor::Cyan.on_default());
+
 #[derive(Parser, Debug)]
+#[clap(author, version, about, long_about = None, styles = STYLES)]
 pub struct Args {
     /// Number of records to generate
     #[clap(short, long, default_value = "1000")]
@@ -44,7 +57,7 @@ pub struct Args {
     ///
     /// If `xlen` is not zero, two output files are required.
     /// If `xlen` is zero, a single output file is required or stdout is used if not provided.
-    #[clap(num_args = 0..2)]
+    #[clap(num_args = 0..=2)]
     pub output: Vec<String>,
 }
 impl Args {
