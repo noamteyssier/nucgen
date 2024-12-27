@@ -1,11 +1,13 @@
 mod cli;
+mod format;
 mod nucleotide;
 mod sequence;
 mod write;
 
 use std::io::Write;
 
-use cli::{Args, Format};
+use cli::Args;
+use format::Format;
 use nucleotide::Nucleotide;
 
 use anyhow::Result;

@@ -1,11 +1,14 @@
 use std::io::Write;
 
 use anyhow::{bail, Result};
-use clap::{Parser, ValueEnum};
+use clap::Parser;
 use rand::prelude::*;
 use rand_chacha::ChaCha8Rng;
 
-use crate::write::{gzip_passthrough, match_output};
+use crate::{
+    format::Format,
+    write::{gzip_passthrough, match_output},
+};
 
 #[derive(Parser, Debug)]
 pub struct Args {
@@ -86,12 +89,4 @@ impl Args {
     pub fn paired(&self) -> bool {
         self.xlen > 0
     }
-}
-
-#[derive(Debug, ValueEnum, Clone, Copy, PartialEq, Eq)]
-pub enum Format {
-    #[clap(name = "a")]
-    Fasta,
-    #[clap(name = "q")]
-    Fastq,
 }
