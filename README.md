@@ -1,8 +1,8 @@
 # nucgen
 
-A fast and simple configurable fast[aq] generator for testing bioinformatics tools.
+A fast and simple configurable nucleotide generator for testing bioinformatics tools with random fasta and fastq files.
 
-All nucleotides `{A ,C, T, G}` are generated randomly with equal probability.
+All nucleotides `{A,C,T,G}` are generated randomly with equal probability.
 
 ## Installation
 
