@@ -10,7 +10,7 @@ All nucleotides `{A,C,T,G}` are generated randomly with equal probability.
 cargo install nucgen
 ```
 
-## Usage
+## Usage (CLI)
 
 All the options are configurable via the command line.
 
@@ -38,4 +38,39 @@ Seed the random number generator with a specific value:
 
 ```bash
 nucgen -n 100 -l 100 -fq -S 42
+```
+
+## Usage (Library)
+
+Add `nucgen` as a dependency in your `Cargo.toml`:
+
+```bash
+cargo add nucgen
+```
+
+You can use the `Sequence` struct to generate random nucleotide sequences:
+
+```rust
+use nucgen::{Sequence, write_fasta};
+
+// Generate a cursor to write the output to
+let mut out = Cursor::new(Vec::new());
+
+// Initialize the random number generator
+let mut rng = rand::thread_rng();
+
+// Initialize the sequence struct
+let mut seq = Sequence::new();
+
+// Generate 100 random nucleotides into the sequence
+seq.fill_buffer(&mut rng, 100);
+
+// Write the sequence to the output cursor
+write_fasta(&mut out, 0, seq.bytes())?;
+
+// Generate another 100 random nucleotides
+seq.fill_buffer(&mut rng, 100);
+
+// Write the second sequence to the output cursor
+write_fasta(&mut out, 1, seq.bytes())?;
 ```
