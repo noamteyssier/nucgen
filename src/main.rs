@@ -1,19 +1,11 @@
 mod cli;
-mod format;
-mod nucleotide;
-mod sequence;
-mod write;
-
-use std::io::Write;
 
 use cli::Args;
-use format::Format;
-use nucleotide::Nucleotide;
 
 use anyhow::Result;
 use clap::Parser;
-use sequence::Sequence;
-use write::{write_fasta, write_fastq};
+use nucgen::{write_fasta, write_fastq, Format, Sequence};
+use std::io::Write;
 
 fn gen_single_end(args: Args) -> Result<()> {
     let mut rng = args.get_rng();

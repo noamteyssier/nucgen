@@ -10,10 +10,7 @@ use rand::prelude::*;
 use rand_chacha::ChaCha8Rng;
 use std::io::Write;
 
-use crate::{
-    format::Format,
-    write::{gzip_passthrough, match_output},
-};
+use nucgen::{gzip_passthrough, match_output, Format};
 
 // Configures Clap v3-style help menu colors
 const STYLES: Styles = Styles::styled()

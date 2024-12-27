@@ -1,4 +1,4 @@
-use super::Nucleotide;
+use crate::Nucleotide;
 use rand::Rng;
 
 pub struct Sequence {
