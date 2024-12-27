@@ -30,11 +30,11 @@ pub struct Args {
     pub num_records: usize,
 
     /// Length of each record (primary sequence)
-    #[clap(short, long, default_value = "100")]
+    #[clap(short = 'l', long, default_value = "100")]
     pub slen: usize,
 
     /// Length of each record (secondary sequence)
-    #[clap(short, long, default_value = "0")]
+    #[clap(short = 'L', long, default_value = "0")]
     pub xlen: usize,
 
     /// Output format
@@ -50,7 +50,7 @@ pub struct Args {
     pub compress: bool,
 
     /// Number of threads to use for parallel compression (0 for auto)
-    #[clap(short = 'T', long, default_value = "1")]
+    #[clap(short = 'T', long, default_value = "0")]
     pub threads: usize,
 
     /// Output file [default: stdout]
