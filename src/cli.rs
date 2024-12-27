@@ -102,4 +102,12 @@ impl Args {
     pub fn paired(&self) -> bool {
         self.xlen > 0
     }
+
+    pub fn format(&self) -> Format {
+        if self.output.len() == 0 {
+            self.format
+        } else {
+            Format::from_path(&self.output[0]).unwrap_or(self.format)
+        }
+    }
 }

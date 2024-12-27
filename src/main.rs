@@ -21,11 +21,12 @@ fn gen_single_end(args: Args) -> Result<()> {
     let qual = vec![b'?'; args.slen];
 
     let mut out = args.output_handle_single()?;
+    let format = args.format();
 
     // Write the records
     for idx in 0..args.num_records {
         seq.fill_buffer(&mut rng, args.slen);
-        match args.format {
+        match format {
             Format::Fasta => write_fasta(&mut out, idx, seq.bytes())?,
             Format::Fastq => write_fastq(&mut out, idx, seq.bytes(), &qual)?,
         }
@@ -45,12 +46,13 @@ fn gen_paired_end(args: Args) -> Result<()> {
     let q2 = vec![b'?'; args.xlen];
 
     let (mut out_r1, mut out_r2) = args.output_handle_paired()?;
+    let format = args.format();
 
     // Write the records
     for idx in 0..args.num_records {
         s1.fill_buffer(&mut rng, args.slen);
         s2.fill_buffer(&mut rng, args.xlen);
-        match args.format {
+        match format {
             Format::Fasta => {
                 write_fasta(&mut out_r1, idx, s1.bytes())?;
                 write_fasta(&mut out_r2, idx, s2.bytes())?;
