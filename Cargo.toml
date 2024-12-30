@@ -1,7 +1,14 @@
 [package]
 name = "nucgen"
+authors = ["Noam Teyssier"]
 version = "0.1.1"
 edition = "2021"
+repository = "https://github.com/noamteyssier/nucgen"
+documentation = "https://docs.rs/nucgen"
+description = "A simple tool and library for generating random nucleotide sequences."
+license = "MIT"
+keywords = ["bioinformatics", "nucleotide", "sequence", "random"]
+categories = ["science"]
 
 [dependencies]
 anyhow = "1.0.95"
