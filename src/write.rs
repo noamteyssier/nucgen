@@ -7,14 +7,14 @@ use gzp::{
 };
 
 pub fn write_fasta<W: Write>(writer: &mut W, index: usize, seq: &[u8]) -> Result<()> {
-    write!(writer, ">seq.{}\n", index)?;
+    writeln!(writer, ">seq.{}", index)?;
     writer.write_all(seq)?;
     writer.write_all(b"\n")?;
     Ok(())
 }
 
 pub fn write_fastq<W: Write>(writer: &mut W, index: usize, seq: &[u8], qual: &[u8]) -> Result<()> {
-    write!(writer, "@seq.{}\n", index)?;
+    writeln!(writer, "@seq.{}", index)?;
     writer.write_all(seq)?;
     writer.write_all(b"\n+\n")?;
     writer.write_all(qual)?;

@@ -101,7 +101,7 @@ impl Args {
     }
 
     pub fn format(&self) -> Format {
-        if self.output.len() == 0 {
+        if self.output.is_empty() {
             self.format
         } else {
             Format::from_path(&self.output[0]).unwrap_or(self.format)
